@@ -6,126 +6,126 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lab6.Controllers
 {
-	public class PersonsController : Controller
+	public class SpecialitiesController : Controller
 	{
 		private readonly PostgresContext _context;
 
-		public PersonsController(PostgresContext context)
+		public SpecialitiesController(PostgresContext context)
 		{
 			_context = context;
 		}
 
-		// GET: Persons
+		// GET: Specialties
 		public async Task<IActionResult> Index()
 		{
-			return View(await _context.Person.ToListAsync());
+			return View(await _context.Specialty.ToListAsync());
 		}
 
-		// GET: Persons/Details/5
+		// GET: Specialties/Details/5
 		public async Task<IActionResult> Details(int? id)
 		{
 			if (id == null)
 				return NotFound();
 
-			var person = await _context.Person
+			var specialty = await _context.Specialty
 				.SingleOrDefaultAsync(m => m.Id == id);
-			if (person == null)
+			if (specialty == null)
 				return NotFound();
 
-			return View(person);
+			return View(specialty);
 		}
 
-		// GET: Persons/Create
+		// GET: Specialties/Create
 		public IActionResult Create()
 		{
 			return View();
 		}
 
-		// POST: Persons/Create
+		// POST: Specialties/Create
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("Id,Name,Surname,Middlename")] Person person)
+		public async Task<IActionResult> Create([Bind("Id,Name")] Specialty specialty)
 		{
 			if (ModelState.IsValid)
 			{
-				_context.Add(person);
+				_context.Add(specialty);
 				await _context.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
-			return View(person);
+			return View(specialty);
 		}
 
-		// GET: Persons/Edit/5
+		// GET: Specialties/Edit/5
 		public async Task<IActionResult> Edit(int? id)
 		{
 			if (id == null)
 				return NotFound();
 
-			var person = await _context.Person.SingleOrDefaultAsync(m => m.Id == id);
-			if (person == null)
+			var specialty = await _context.Specialty.SingleOrDefaultAsync(m => m.Id == id);
+			if (specialty == null)
 				return NotFound();
-			return View(person);
+			return View(specialty);
 		}
 
-		// POST: Persons/Edit/5
+		// POST: Specialties/Edit/5
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Middlename")] Person person)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Specialty specialty)
 		{
-			if (id != person.Id)
+			if (id != specialty.Id)
 				return NotFound();
 
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					_context.Update(person);
+					_context.Update(specialty);
 					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateConcurrencyException)
 				{
-					if (!PersonExists(person.Id))
+					if (!SpecialtyExists(specialty.Id))
 						return NotFound();
 					throw;
 				}
 				return RedirectToAction("Index");
 			}
-			return View(person);
+			return View(specialty);
 		}
 
-		// GET: Persons/Delete/5
+		// GET: Specialties/Delete/5
 		public async Task<IActionResult> Delete(int? id)
 		{
 			if (id == null)
 				return NotFound();
 
-			var person = await _context.Person
+			var specialty = await _context.Specialty
 				.SingleOrDefaultAsync(m => m.Id == id);
-			if (person == null)
+			if (specialty == null)
 				return NotFound();
 
-			return View(person);
+			return View(specialty);
 		}
 
-		// POST: Persons/Delete/5
+		// POST: Specialties/Delete/5
 		[HttpPost]
 		[ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirmed(int id)
 		{
-			var person = await _context.Person.SingleOrDefaultAsync(m => m.Id == id);
-			_context.Person.Remove(person);
+			var specialty = await _context.Specialty.SingleOrDefaultAsync(m => m.Id == id);
+			_context.Specialty.Remove(specialty);
 			await _context.SaveChangesAsync();
 			return RedirectToAction("Index");
 		}
 
-		private bool PersonExists(int id)
+		private bool SpecialtyExists(int id)
 		{
-			return _context.Person.Any(e => e.Id == id);
+			return _context.Specialty.Any(e => e.Id == id);
 		}
 	}
 }

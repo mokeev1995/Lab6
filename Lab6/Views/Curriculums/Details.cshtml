@@ -1,0 +1,61 @@
+@model Curriculum
+
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+	<h4>Curriculum</h4>
+	<hr/>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Semester)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Semester)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Course)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Course)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.HoursAmount)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.HoursAmount)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.HasExam)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.HasExam)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Professor)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Professor.Id)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.SpecialtyNavigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.SpecialtyNavigation.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.SubjectNavigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.SubjectNavigation.Name)
+		</dd>
+	</dl>
+</div>
+<div>
+	<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+	<a asp-action="Index">Back to List</a>
+</div>

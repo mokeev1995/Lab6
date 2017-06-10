@@ -65,9 +65,8 @@ namespace Lab6
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");
+				app.UseStatusCodePagesWithRedirects("~/errors/{0}");
 			}
-
-			app.UseStatusCodePagesWithRedirects("~/errors/{0}");
 
 			ConfigureRoutes(app);
 		}

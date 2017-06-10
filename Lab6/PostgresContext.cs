@@ -5,13 +5,13 @@ namespace Lab6
 {
 	public class PostgresContext : DbContext
 	{
-		public virtual DbSet<AcademicRecord> Academicrecord { get; set; }
+		public virtual DbSet<AcademicRecord> AcademicRecord { get; set; }
 		public virtual DbSet<Curriculum> Curriculum { get; set; }
 		public virtual DbSet<Department> Department { get; set; }
-		public virtual DbSet<Examinationlist> Examinationlist { get; set; }
+		public virtual DbSet<ExaminationList> ExaminationList { get; set; }
 		public virtual DbSet<Person> Person { get; set; }
 		public virtual DbSet<Professor> Professor { get; set; }
-		public virtual DbSet<ProfessorSubject> Professorsubject { get; set; }
+		public virtual DbSet<ProfessorSubject> ProfessorSubject { get; set; }
 		public virtual DbSet<Sheet> Sheet { get; set; }
 		public virtual DbSet<Specialty> Specialty { get; set; }
 		public virtual DbSet<Student> Student { get; set; }
@@ -94,7 +94,7 @@ namespace Lab6
 					.HasColumnName("name");
 			});
 
-			modelBuilder.Entity<Examinationlist>(entity =>
+			modelBuilder.Entity<ExaminationList>(entity =>
 			{
 				entity.ToTable("examinationlist");
 

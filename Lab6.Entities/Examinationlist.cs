@@ -2,7 +2,7 @@
 
 namespace Lab6.Entities
 {
-	public class Examinationlist
+	public class ExaminationList
 	{
 		public int Id { get; set; }
 		public int Sheet { get; set; }

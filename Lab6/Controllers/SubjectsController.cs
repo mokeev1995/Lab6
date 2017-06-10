@@ -6,126 +6,126 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lab6.Controllers
 {
-	public class PersonsController : Controller
+	public class SubjectsController : Controller
 	{
 		private readonly PostgresContext _context;
 
-		public PersonsController(PostgresContext context)
+		public SubjectsController(PostgresContext context)
 		{
 			_context = context;
 		}
 
-		// GET: Persons
+		// GET: Subjects
 		public async Task<IActionResult> Index()
 		{
-			return View(await _context.Person.ToListAsync());
+			return View(await _context.Subject.ToListAsync());
 		}
 
-		// GET: Persons/Details/5
+		// GET: Subjects/Details/5
 		public async Task<IActionResult> Details(int? id)
 		{
 			if (id == null)
 				return NotFound();
 
-			var person = await _context.Person
+			var subject = await _context.Subject
 				.SingleOrDefaultAsync(m => m.Id == id);
-			if (person == null)
+			if (subject == null)
 				return NotFound();
 
-			return View(person);
+			return View(subject);
 		}
 
-		// GET: Persons/Create
+		// GET: Subjects/Create
 		public IActionResult Create()
 		{
 			return View();
 		}
 
-		// POST: Persons/Create
+		// POST: Subjects/Create
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("Id,Name,Surname,Middlename")] Person person)
+		public async Task<IActionResult> Create([Bind("Id,Name")] Subject subject)
 		{
 			if (ModelState.IsValid)
 			{
-				_context.Add(person);
+				_context.Add(subject);
 				await _context.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
-			return View(person);
+			return View(subject);
 		}
 
-		// GET: Persons/Edit/5
+		// GET: Subjects/Edit/5
 		public async Task<IActionResult> Edit(int? id)
 		{
 			if (id == null)
 				return NotFound();
 
-			var person = await _context.Person.SingleOrDefaultAsync(m => m.Id == id);
-			if (person == null)
+			var subject = await _context.Subject.SingleOrDefaultAsync(m => m.Id == id);
+			if (subject == null)
 				return NotFound();
-			return View(person);
+			return View(subject);
 		}
 
-		// POST: Persons/Edit/5
+		// POST: Subjects/Edit/5
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Middlename")] Person person)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Subject subject)
 		{
-			if (id != person.Id)
+			if (id != subject.Id)
 				return NotFound();
 
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					_context.Update(person);
+					_context.Update(subject);
 					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateConcurrencyException)
 				{
-					if (!PersonExists(person.Id))
+					if (!SubjectExists(subject.Id))
 						return NotFound();
 					throw;
 				}
 				return RedirectToAction("Index");
 			}
-			return View(person);
+			return View(subject);
 		}
 
-		// GET: Persons/Delete/5
+		// GET: Subjects/Delete/5
 		public async Task<IActionResult> Delete(int? id)
 		{
 			if (id == null)
 				return NotFound();
 
-			var person = await _context.Person
+			var subject = await _context.Subject
 				.SingleOrDefaultAsync(m => m.Id == id);
-			if (person == null)
+			if (subject == null)
 				return NotFound();
 
-			return View(person);
+			return View(subject);
 		}
 
-		// POST: Persons/Delete/5
+		// POST: Subjects/Delete/5
 		[HttpPost]
 		[ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirmed(int id)
 		{
-			var person = await _context.Person.SingleOrDefaultAsync(m => m.Id == id);
-			_context.Person.Remove(person);
+			var subject = await _context.Subject.SingleOrDefaultAsync(m => m.Id == id);
+			_context.Subject.Remove(subject);
 			await _context.SaveChangesAsync();
 			return RedirectToAction("Index");
 		}
 
-		private bool PersonExists(int id)
+		private bool SubjectExists(int id)
 		{
-			return _context.Person.Any(e => e.Id == id);
+			return _context.Subject.Any(e => e.Id == id);
 		}
 	}
 }

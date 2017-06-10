@@ -1,0 +1,76 @@
+@model Curriculum
+
+@{
+	ViewData["Title"] = "Edit";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+	<div class="form-horizontal">
+		<h4>Curriculum</h4>
+		<hr/>
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<input type="hidden" asp-for="Id"/>
+		<div class="form-group">
+			<label asp-for="Subject" class="control-label col-md-2"></label>
+			<div class="col-md-10">
+				<select asp-for="Subject" class="form-control" asp-items="ViewBag.Subject"></select>
+				<span asp-validation-for="Subject" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Semester" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="Semester" class="form-control"/>
+				<span asp-validation-for="Semester" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Course" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="Course" class="form-control"/>
+				<span asp-validation-for="Course" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Specialty" class="control-label col-md-2"></label>
+			<div class="col-md-10">
+				<select asp-for="Specialty" class="form-control" asp-items="ViewBag.Specialty"></select>
+				<span asp-validation-for="Specialty" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="HoursAmount" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="HoursAmount" class="form-control"/>
+				<span asp-validation-for="HoursAmount" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="ProfessorId" class="control-label col-md-2"></label>
+			<div class="col-md-10">
+				<select asp-for="ProfessorId" class="form-control" asp-items="ViewBag.ProfessorId"></select>
+				<span asp-validation-for="ProfessorId" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<div class="checkbox">
+					<input asp-for="HasExam"/>
+					<label asp-for="HasExam"></label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Save" class="btn btn-default"/>
+			</div>
+		</div>
+	</div>
+</form>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
