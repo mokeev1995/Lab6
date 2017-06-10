@@ -1,0 +1,13 @@
+﻿@model Lab6.ViewModels.Home.IndexModel
+
+<div>
+	list of tables:
+	<ul>
+		@foreach (var item in Model.Links)
+		{
+			<li>
+				<a href="@item.Link">@item.Name</a>
+			</li>
+		}
+	</ul>
+</div>
