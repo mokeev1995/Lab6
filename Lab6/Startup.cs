@@ -43,7 +43,7 @@ namespace Lab6
 				.AddDbContext<PostgresContext>(options =>
 				{
 					options.UseNpgsql(
-						Configuration.GetConnectionString("Math")
+						Configuration.GetConnectionString("Site")
 					);
 				});
 		}

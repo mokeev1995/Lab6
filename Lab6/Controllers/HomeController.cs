@@ -3,8 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lab6.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
+		public HomeController(PostgresContext context) : base(context)
+		{
+		}
+
 		public IActionResult Index()
 		{
 			var model = new IndexModel();

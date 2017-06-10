@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Person>
+<ul>
+	@foreach (var person in Model)
+	{
+		<li>
+			@Html.ActionLink($"{person.Surname} {person.Name} {person.Middlename}", "Edit", "Persons", new { id = person.Id})
+		</li>
+	}
+</ul>

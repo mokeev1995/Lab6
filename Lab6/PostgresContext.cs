@@ -18,7 +18,7 @@ namespace Lab6
 		public virtual DbSet<Studentsgroup> Studentsgroup { get; set; }
 		public virtual DbSet<Subject> Subject { get; set; }
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		public PostgresContext(DbContextOptions options) : base(options)
 		{
 		}
 
