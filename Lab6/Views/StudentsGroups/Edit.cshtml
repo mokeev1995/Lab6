@@ -1,0 +1,61 @@
+@model StudentsGroup
+
+@{
+	ViewData["Title"] = "Edit";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+	<div class="form-horizontal">
+		<h4>StudentsGroup</h4>
+		<hr/>
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<input type="hidden" asp-for="Id"/>
+		<div class="form-group">
+			<label asp-for="Name" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="Name" class="form-control"/>
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="DateStart" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="DateStart" class="form-control"/>
+				<span asp-validation-for="DateStart" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="DateFinish" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="DateFinish" class="form-control"/>
+				<span asp-validation-for="DateFinish" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Specialty" class="control-label col-md-2"></label>
+			<div class="col-md-10">
+				<select asp-for="Specialty" class="form-control" asp-items="ViewBag.Specialty"></select>
+				<span asp-validation-for="Specialty" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Course" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="Course" class="form-control"/>
+				<span asp-validation-for="Course" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Save" class="btn btn-default"/>
+			</div>
+		</div>
+	</div>
+</form>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>

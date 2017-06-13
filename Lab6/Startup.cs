@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Linq;
+using Lab6.Core;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,7 @@ namespace Lab6
 			ConfigureEntityFramework(services);
 			ConfigureDependencyInjection(services);
 		}
+	
 
 		private void ConfigureEntityFramework(IServiceCollection services)
 		{
@@ -48,9 +50,14 @@ namespace Lab6
 				});
 		}
 
-		private static void ConfigureDependencyInjection(IServiceCollection services)
+		private void ConfigureDependencyInjection(IServiceCollection services)
 		{
 			services.AddLogging();
+			services.AddSingleton<IDbQueryable>(
+				new PgQueryable(
+					Configuration.GetConnectionString("Site")
+				)
+			);
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

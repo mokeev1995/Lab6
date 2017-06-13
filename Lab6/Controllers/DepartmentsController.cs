@@ -1,144 +1,131 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Lab6.Core;
 using Lab6.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lab6.Controllers
 {
-	public class PersonsController : Controller
+	public class DepartmentsController : Controller
 	{
 		private readonly PostgresContext _context;
-		private readonly IDbQueryable _queryable;
 
-		public PersonsController(PostgresContext context, IDbQueryable queryable)
+		public DepartmentsController(PostgresContext context)
 		{
 			_context = context;
-			_queryable = queryable;
 		}
 
-		// GET: Persons
+		// GET: Departments
 		public async Task<IActionResult> Index()
 		{
-			return View(await _context.Person.ToListAsync());
+			return View(await _context.Department.ToListAsync());
 		}
 
-		// GET: Persons/Details/5
+		// GET: Departments/Details/5
 		public async Task<IActionResult> Details(int? id)
 		{
 			if (id == null)
 				return NotFound();
 
-			var person = await _context.Person
+			var department = await _context.Department
 				.SingleOrDefaultAsync(m => m.Id == id);
-			if (person == null)
+			if (department == null)
 				return NotFound();
 
-			return View(person);
+			return View(department);
 		}
 
-		// GET: Persons/Create
+		// GET: Departments/Create
 		public IActionResult Create()
 		{
 			return View();
 		}
 
-		// POST: Persons/Create
+		// POST: Departments/Create
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("Id,Name,Surname,Middlename")] Person person)
+		public async Task<IActionResult> Create([Bind("Id,Name")] Department department)
 		{
 			if (ModelState.IsValid)
 			{
-				_context.Add(person);
+				_context.Add(department);
 				await _context.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
-			return View(person);
+			return View(department);
 		}
 
-		// GET: Persons/Edit/5
+		// GET: Departments/Edit/5
 		public async Task<IActionResult> Edit(int? id)
 		{
 			if (id == null)
 				return NotFound();
 
-			var person = await _context.Person.SingleOrDefaultAsync(m => m.Id == id);
-			if (person == null)
+			var department = await _context.Department.SingleOrDefaultAsync(m => m.Id == id);
+			if (department == null)
 				return NotFound();
-			return View(person);
+			return View(department);
 		}
 
-		// POST: Persons/Edit/5
+		// POST: Departments/Edit/5
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Middlename")] Person person)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Department department)
 		{
-			if (id != person.Id)
+			if (id != department.Id)
 				return NotFound();
 
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					await _queryable.SendSqlQueryAsync(
-						"update_person",
-						new []
-						{
-							new KeyValuePair<string, object>("p_id", person.Id),
-							new KeyValuePair<string, object>("p_name", person.Name),
-							new KeyValuePair<string, object>("p_surname", person.Surname),
-							new KeyValuePair<string, object>("p_middlename", person.Middlename)
-						},
-						System.Data.CommandType.StoredProcedure
-					);
+					_context.Update(department);
+					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateConcurrencyException)
 				{
-					if (!PersonExists(person.Id))
+					if (!DepartmentExists(department.Id))
 						return NotFound();
 					throw;
 				}
 				return RedirectToAction("Index");
 			}
-			return View(person);
+			return View(department);
 		}
 
-		// GET: Persons/Delete/5
+		// GET: Departments/Delete/5
 		public async Task<IActionResult> Delete(int? id)
 		{
 			if (id == null)
 				return NotFound();
 
-			var person = await _context.Person
+			var department = await _context.Department
 				.SingleOrDefaultAsync(m => m.Id == id);
-			if (person == null)
+			if (department == null)
 				return NotFound();
 
-			return View(person);
+			return View(department);
 		}
 
-		// POST: Persons/Delete/5
+		// POST: Departments/Delete/5
 		[HttpPost]
 		[ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirmed(int id)
 		{
-			var person = await _context.Person.SingleOrDefaultAsync(m => m.Id == id);
-			_context.Person.Remove(person);
+			var department = await _context.Department.SingleOrDefaultAsync(m => m.Id == id);
+			_context.Department.Remove(department);
 			await _context.SaveChangesAsync();
 			return RedirectToAction("Index");
 		}
 
-		private bool PersonExists(int id)
+		private bool DepartmentExists(int id)
 		{
-			return _context.Person.Any(e => e.Id == id);
+			return _context.Department.Any(e => e.Id == id);
 		}
 	}
 }

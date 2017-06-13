@@ -19,7 +19,7 @@ namespace Lab6.Controllers
 		// GET: Curriculums
 		public async Task<IActionResult> Index()
 		{
-			var postgresContext = _context.Curriculum.Include(c => c.Professor).Include(c => c.SpecialtyNavigation)
+			var postgresContext = _context.Curriculum.Include(c => c.Professor).ThenInclude(professor => professor.PersonNavigation).Include(c => c.SpecialtyNavigation)
 				.Include(c => c.SubjectNavigation);
 			return View(await postgresContext.ToListAsync());
 		}
@@ -92,8 +92,8 @@ namespace Lab6.Controllers
 					{
 						professor.Id,
 						Name = (from person in _context.Person
-							   where person.Id == professor.Person
-							   select $"{person.Surname} {person.Name} {person.Middlename}").Single()
+							where person.Id == professor.Person
+							select $"{person.Surname} {person.Name} {person.Middlename}").Single()
 					}), "Id", "Name", curriculum.ProfessorId);
 			ViewData["Specialty"] = new SelectList(_context.Specialty, "Id", "Name", curriculum.Specialty);
 			ViewData["Subject"] = new SelectList(_context.Subject, "Id", "Name", curriculum.Subject);

@@ -1,22 +1,38 @@
-﻿using Lab6.ViewModels.Home;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lab6.Controllers
 {
-	public class HomeController: Controller
+	public class MenuLink
+	{
+		public MenuLink(string name, string link)
+		{
+			Link = link;
+			Name = name;
+		}
+
+		public string Link { get; }
+		public string Name { get; }
+	}
+
+	public class HomeController : Controller
 	{
 		public IActionResult Index()
 		{
-			var model = new IndexModel();
+			var links = new List<MenuLink>
+			{
+				new MenuLink("Curriculums", "/curriculums"),
+				new MenuLink("Persons", "/persons"),
+				new MenuLink("Professors", "/professors"),
+				new MenuLink("Specialities", "/specialities"),
+				new MenuLink("Students", "/students"),
+				new MenuLink("Subjects", "/subjects"),
+				new MenuLink("Departments", "/departments"),
+				new MenuLink("StudentsGroups", "/studentsgroups"),
+				new MenuLink("Sheets", "/sheets")
+			};
 
-			model.Links.Add(new MenuLink("Curriculums", "/curriculums"));
-			model.Links.Add(new MenuLink("Persons", "/persons"));
-			model.Links.Add(new MenuLink("Professors", "/professors"));
-			model.Links.Add(new MenuLink("Specialities", "/specialities"));
-			model.Links.Add(new MenuLink("Students", "/students"));
-			model.Links.Add(new MenuLink("Subjects", "/subjects"));
-
-			return View(model);
+			return View(links);
 		}
 	}
 }

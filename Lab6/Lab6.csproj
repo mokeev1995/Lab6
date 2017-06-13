@@ -27,6 +27,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.1.2" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.2" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
@@ -34,6 +35,7 @@
 		<PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+		<PackageReference Include="Npgsql" Version="3.2.3" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="1.1.0" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
 	</ItemGroup>

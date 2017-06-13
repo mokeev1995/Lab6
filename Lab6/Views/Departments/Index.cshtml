@@ -1,4 +1,4 @@
-@model IEnumerable<Professor>
+@model IEnumerable<Department>
 
 @{
 	ViewData["Title"] = "Index";
@@ -14,10 +14,7 @@
 	<thead>
 	<tr>
 		<th>
-			@Html.DisplayNameFor(model => model.DepartmentNavigation)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.PersonNavigation)
+			@Html.DisplayNameFor(model => model.Name)
 		</th>
 		<th></th>
 	</tr>
@@ -27,12 +24,7 @@
 	{
 		<tr>
 			<td>
-				@Html.DisplayFor(modelItem => item.DepartmentNavigation.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.PersonNavigation.Surname)
-				@Html.DisplayFor(modelItem => item.PersonNavigation.Name)
-				@Html.DisplayFor(modelItem => item.PersonNavigation.Middlename)
+				@Html.DisplayFor(modelItem => item.Name)
 			</td>
 			<td>
 				<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

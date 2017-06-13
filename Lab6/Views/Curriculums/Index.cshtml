@@ -54,7 +54,9 @@
 				@Html.DisplayFor(modelItem => item.HasExam)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => item.Professor.Id)
+				@Html.DisplayFor(modelItem => item.Professor.PersonNavigation.Surname)
+				@Html.DisplayFor(modelItem => item.Professor.PersonNavigation.Name)
+				@Html.DisplayFor(modelItem => item.Professor.PersonNavigation.Middlename)
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.SpecialtyNavigation.Name)

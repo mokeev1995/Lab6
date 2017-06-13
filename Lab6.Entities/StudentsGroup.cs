@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Lab6.Entities
 {
-	public class Studentsgroup
+	public class StudentsGroup
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }

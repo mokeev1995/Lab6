@@ -10,6 +10,6 @@ namespace Lab6.Entities
 
 		public virtual ICollection<Sheet> Sheet { get; set; } = new HashSet<Sheet>();
 		public virtual Person PersonNavigation { get; set; }
-		public virtual Studentsgroup StudentsGroupNavigation { get; set; }
+		public virtual StudentsGroup StudentsGroupNavigation { get; set; }
 	}
 }

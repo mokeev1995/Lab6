@@ -1,9 +1,9 @@
-﻿@model IndexModel
+﻿@model List<Lab6.Controllers.MenuLink>
 
 <div>
 	list of tables:
 	<ul>
-		@foreach (var item in Model.Links)
+		@foreach (var item in Model)
 		{
 			<li>
 				<a href="@item.Link">@item.Name</a>

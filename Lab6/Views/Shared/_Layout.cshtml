@@ -1,10 +1,49 @@
-﻿<!DOCTYPE html>
+﻿@{
+	var title = (ViewData["Title"] ?? "Main") + " | Lab 6";
+}
 
-<html>
-<head>
-	<title>Test</title>
-</head>
-<body>
-@RenderBody()
-</body>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>@title</title>
+
+		<!-- Bootstrap -->
+		<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container">
+			@RenderBody()
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="~/lib/jquery/dist/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+		
+		<environment names="Development">
+			<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+			<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+		</environment>
+		<environment names="Staging,Production">
+			<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+			        asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+			        asp-fallback-test="window.jQuery && window.jQuery.validator">
+			</script>
+			<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
+			        asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+			        asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive">
+			</script>
+		</environment>
+	</body>
 </html>

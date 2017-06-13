@@ -15,7 +15,7 @@ namespace Lab6
 		public virtual DbSet<Sheet> Sheet { get; set; }
 		public virtual DbSet<Specialty> Specialty { get; set; }
 		public virtual DbSet<Student> Student { get; set; }
-		public virtual DbSet<Studentsgroup> Studentsgroup { get; set; }
+		public virtual DbSet<StudentsGroup> Studentsgroup { get; set; }
 		public virtual DbSet<Subject> Subject { get; set; }
 
 		public PostgresContext(DbContextOptions options) : base(options)
@@ -235,7 +235,7 @@ namespace Lab6
 					.HasConstraintName("student_students_group_fkey");
 			});
 
-			modelBuilder.Entity<Studentsgroup>(entity =>
+			modelBuilder.Entity<StudentsGroup>(entity =>
 			{
 				entity.ToTable("studentsgroup");
 

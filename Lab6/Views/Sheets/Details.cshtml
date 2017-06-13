@@ -1,0 +1,42 @@
+@model Sheet
+
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+	<h4>Sheet</h4>
+	<hr/>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Date)
+		</dt>
+		<dd>
+			@Model.Date.ToString("dd.MM.yy")
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.CurriculumNavigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.CurriculumNavigation.SpecialtyNavigation.Name),
+			@Html.DisplayFor(model => model.CurriculumNavigation.SubjectNavigation.Name),
+			Course: @Html.DisplayFor(model => model.CurriculumNavigation.Course),
+			Semester: @Html.DisplayFor(model => model.CurriculumNavigation.Semester)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.StudentNavigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.StudentNavigation.PersonNavigation.Surname)
+			@Html.DisplayFor(model => model.StudentNavigation.PersonNavigation.Name)
+			@Html.DisplayFor(model => model.StudentNavigation.PersonNavigation.Middlename)
+		</dd>
+	</dl>
+</div>
+<div>
+	<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+	<a asp-action="Index">Back to List</a>
+</div>
